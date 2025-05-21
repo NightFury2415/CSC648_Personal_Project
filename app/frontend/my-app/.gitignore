@@ -1,0 +1,166 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# PyInstaller
+# Usually these files are written by a CI script in a temporary folder.
+# If you run PyInstaller locally, adapt this to your needs.
+# *.manifest
+# *.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+.pytest_cache/
+
+# Translations
+*.mo
+*.pot
+
+# Django stuff:
+# *.log
+# local_settings.py
+# db.sqlite3
+# db.sqlite3-journal
+
+# Flask stuff:
+instance/
+.webassets-cache
+
+# Scrapy stuff:
+.scrapy
+
+# Sphinx documentation
+docs/_build/
+
+# PyBuilder
+target/
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+# Specific to your backend venv location, if different or in addition to generic
+app/backend/venv/
+
+# Spyder project settings
+.spyderproject
+.spyderworkspace
+
+# Rope project settings
+.ropeproject
+
+# PyDev project settings
+.pydevproject
+
+# PyCharm specific files
+.idea/
+
+# VS Code specific files
+.vscode/
+
+# node.js / npm / yarn / pnpm
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+# Lockfiles (choose one per project and stick to it)
+# package-lock.json # Uncomment if you use yarn.lock or pnpm-lock.yaml primarily
+# yarn.lock         # Uncomment if you use package-lock.json or pnpm-lock.yaml primarily
+# pnpm-lock.yaml    # Uncomment if you use package-lock.json or yarn.lock primarily
+
+# Frontend build output
+# For Vite/React (your app/frontend/my-app)
+app/frontend/my-app/dist/
+app/frontend/my-app/build/ # If using Create React App or similar
+app/frontend/my-app/.vite/ # Vite cache directory
+app/frontend/my-app/.output/ # Nuxt build output
+
+# dotenv environment variable files
+.env
+.env.*
+!.env.example # Often good to commit an example .env file
+
+# Operating System Files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs and Databases
+*.log
+*.sql
+*.sqlite
+# You might want to commit init.sql, so be careful with a blanket *.sql ignore.
+# If init.sql is the only SQL file you want to commit, then add:
+# !init.sql
+# After a general *.sql ignore, or just don't have a general *.sql ignore.
+# For now, I'll assume init.sql is intended to be committed.
+
+# Temporary files
+*.swp
+*~
+*.tmp
+
+# User-specific requests & Project Structure
+/app/backend/product_images/
+
+# Sensitive credentials / Keys
+# These should IDEALLY NOT EXIST in the repo, even if gitignored.
+# Use environment variables or a proper secrets management solution.
+# This is a fallback.
+app/backend/credentials/*.pem
+app/backend/credentials/webServer key.pem # Being specific for clarity
+
+# If you have a directory named "my-app" at the ROOT of your project that
+# you want to ignore, uncomment the line below.
+# Based on your `tree` output, your frontend app is at `app/frontend/my-app/`.
+# Ignoring `app/frontend/my-app/` entirely would mean not versioning your frontend code.
+# It's more common to ignore build outputs and node_modules *within* it,
+# which are covered by other rules (e.g., app/frontend/my-app/dist/, node_modules/).
+# /my-app/
+
+# Milestones (if they are just documents and not part of the app build)
+Milestones/
+
+# Helpful.txt (if it's developer notes not for the app)
+helpful.txt

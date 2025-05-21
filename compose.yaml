@@ -1,0 +1,87 @@
+version: '3.8'
+
+services:
+  # Backend Flask service
+  backend:
+    build:
+      context: ./app/backend
+      dockerfile: Dockerfile
+    ports:
+      - "8001:8000"
+    volumes:
+      - ./app/backend:/app
+    environment:
+      - FLASK_ENV=production
+      - PYTHONUNBUFFERED=1
+      - MYSQL_HOST=db
+      - MYSQL_USER=csc648user
+      - MYSQL_PASSWORD=Csc648_P@ss!
+      - MYSQL_DATABASE=gator_market
+    deploy:
+      resources:
+        limits:
+          memory: 128M
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+
+  # Frontend React service
+  frontend:
+    build:
+      context: ./app/frontend/my-app
+      dockerfile: Dockerfile
+    ports:
+      - "5173:80"
+    volumes:
+    - ./app/frontend/my-app:/app/my-app
+    - /app/my-app/node_modules
+
+    environment:
+      - REACT_APP_API_URL=http://localhost:8000
+      - NODE_ENV=production
+      - GENERATE_SOURCEMAP=false
+      - DISABLE_ESLINT_PLUGIN=true
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+        reservations:
+          memory: 128M
+    depends_on:
+      - backend
+    stdin_open: true
+    tty: true
+
+  # MySQL Database service
+  db:
+    image: mysql:8.0 
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    environment:
+      - MYSQL_ROOT_PASSWORD=rootpass
+      - MYSQL_DATABASE=gator_market
+      - MYSQL_USER=csc648user
+      - MYSQL_PASSWORD=Csc648_P@ss!
+      # Performance optimizations for t2.micro
+      - MYSQL_INNODB_BUFFER_POOL_SIZE=32M
+      - MYSQL_INNODB_LOG_BUFFER_SIZE=4M
+      - MYSQL_MAX_CONNECTIONS=10
+      - performance-schema=0
+      - table-definition-cache=200
+      - table-open-cache=128
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  mysql_data:

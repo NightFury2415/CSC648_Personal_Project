@@ -1,0 +1,74 @@
+# Git files - essential to exclude
+.git/
+.gitignore
+
+# Docker related files - exclude these from the build context of an image
+# This .dockerignore file itself
+.dockerignore
+# Docker compose files (if not specifically needed in the image)
+compose.yaml
+docker-compose*
+# Other Dockerfiles if building with a root Dockerfile that orchestrates,
+# otherwise, these are usually fine if contexts are service-specific.
+app/backend/Dockerfile
+app/frontend/my-app/Dockerfile
+
+# IDE/Editor specific configurations
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+# Eclipse/STS specific (from your list)
+.project
+.classpath
+.factorypath
+.settings/
+# Visual Studio specific (from your list)
+*.*proj.user
+.vs/
+
+# Python specific build artifacts and virtual environments
+**/__pycache__/
+app/backend/venv/ # Your specific virtual environment location
+*.pyc
+# **/.venv # Keep if you might have other venvs elsewhere
+
+# Node.js specific build artifacts
+**/node_modules/
+app/frontend/my-app/dist/ # Common output for Vite builds
+app/frontend/my-app/build/ # Common for CRA, include if applicable
+npm-debug.log*
+yarn-error.log*
+yarn.lock # If only package-lock.json is used, or vice-versa
+# package-lock.json # If only yarn.lock is used (keep one lockfile typically)
+
+# Sensitive information - CRITICAL to exclude from images
+**/.env # Excludes ALL .env files, including app/backend/.env
+app/backend/credentials/webServer key.pem # Exclude sensitive keys!
+# If secrets.dev.yaml or values.dev.yaml contain secrets, keep these:
+**/secrets.dev.yaml
+**/values.dev.yaml
+
+# Operating System specific files
+.DS_Store # macOS
+Thumbs.db # Windows
+
+# Logs
+*.log
+
+# Non-application files / Documentation
+Milestones/
+helpful.txt
+# README.md # Often excluded, unless your app specifically serves it
+# LICENSE   # Often excluded, unless your app specifically serves it
+
+# Other common build outputs (review if applicable to your project)
+# **/bin/ # From your list, if it's a local build output
+# **/obj/ # From your list, if it's a local build output
+# **/.toolstarget # From your list
+# **/*.dbmdl     # From your list
+# **/*.jfm       # From your list
+# **/charts       # From your list (Helm charts if using Kubernetes)
+
+# Don't ignore init.sql if it's used by your database container entrypoint
+# init.sql
