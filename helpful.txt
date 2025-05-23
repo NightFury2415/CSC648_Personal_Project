@@ -5,7 +5,7 @@ force push:
 git push origin main --force
 
 open mysql db in docker:
-docker exec -it csc648-fa25-0104-team01-db-1 mysql -u csc648user -p
+docker exec -it gator-market-db-1 mysql -u csc648user -p
     - add winpty to the start if you are using linux terminal software on windows (such as gitbash)
     - password is Csc648_P@ss!
 
